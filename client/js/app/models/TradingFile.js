@@ -9,6 +9,6 @@ class TradingFile{
     }
 
     get negociacoes(){
-        return this.negociacoes;
+        return [].concat(this.negociacoes);
     }
 }
