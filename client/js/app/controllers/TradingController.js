@@ -5,16 +5,27 @@ class TradingController{
         this._inputData = $('#data');
         this._inputQuantidade = $('#quantidade');
         this._inputValor = $('#valor');
+        this._listaNegociaoes = new TradingList();
     }
 
     adicionar(event){
         event.preventDefault();
 
-        let trading = new Trading(
+        this._listaNegociaoes.adicionar(_criaTrading());
+        this._limpaForm();
+    }
+
+    _criaTrading(){
+        return new Trading(
             DateHelper.textoParaData(this._inputData.value),
             this._inputQuantidade.value,
             this._inputValor.value);
+    }
+    _limpaForm(){
+        this._inputData.value = "";
+        this._inputQuantidade.value = 1;
+        this._inputValor.value = 0.0;
 
-        console.log(trading._data);
+        this._inputData.focus();
     }
 }
