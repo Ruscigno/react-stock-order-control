@@ -11,7 +11,7 @@ class TradingController{
         event.preventDefault();
 
         let trading = new Trading(
-            new Date(this._inputData.value.split('-')),
+            DateHelper.textoParaData(this._inputData.value),
             this._inputQuantidade.value,
             this._inputValor.value);
 
