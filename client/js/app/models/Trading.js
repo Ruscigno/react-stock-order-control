@@ -1,25 +1,25 @@
 class Trading {
 
-    constructor(data, quantidade, valor) {
+    constructor(data, quantity, price) {
         this._data = new Date(data.getTime());
-        this._quantidade = quantidade;
-        this._valor = valor;
+        this._quantity = quantity;
+        this._price = price;
         Object.freeze(this);
     }
 
     get volume(){
-        return this._quantidade * this._valor;
+        return this._quantity * this._price;
     }
 
     get data(){
         return new Date(this._data.getTime()) ;
     }
 
-    get quantidade(){
-        return this._quantidade;
+    get quantity(){
+        return this._quantity;
     }
 
-    get valor(){
-        return this._valor;
+    get price(){
+        return this._price;
     }
 }

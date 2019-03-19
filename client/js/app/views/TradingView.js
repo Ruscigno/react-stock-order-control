@@ -16,8 +16,8 @@ class TradingView extends View{
                 ${model.negociacoes.map(n => 
                     `<tr>
                         <td>${DateHelper.dataParaTexto(n.data)}</td>
-                        <td>${n.quantidade}</td>
-                        <td>${n.valor}</td>
+                        <td>${n.quantity}</td>
+                        <td>${n.price}</td>
                         <td>${n.volume}</td>
                     </tr>`
                 ).join('')}
