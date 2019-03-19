@@ -13,11 +13,11 @@ class TradingView extends View{
             </thead>
 
             <tbody>
-                ${model.negociacoes.map(n => 
+                ${model.trades.map(n => 
                     `<tr>
                         <td>${DateHelper.dataParaTexto(n.data)}</td>
-                        <td>${n.quantidade}</td>
-                        <td>${n.valor}</td>
+                        <td>${n.quantity}</td>
+                        <td>${n.price}</td>
                         <td>${n.volume}</td>
                     </tr>`
                 ).join('')}
@@ -25,7 +25,7 @@ class TradingView extends View{
 
             <tfoot>
                     <td colspan="3"></td>
-                    <td>${model.negociacoes.reduce((total, n) => total += n.volume, 0.0)}
+                    <td>${model.trades.reduce((total, n) => total += n.volume, 0.0)}
             </tfoot>
             </table>
         `;

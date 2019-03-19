@@ -1,14 +1,14 @@
 class TradingList{
 
     constructor() {
-        this._negociacoes = []
+        this._trades = []
     }
 
-    adiciona(_negociacao){
-        this._negociacoes.push(_negociacao);
+    adiciona(_trade){
+        this._trades.push(_trade);
     }
 
-    get negociacoes(){
-        return [].concat(this._negociacoes);
+    get trades(){
+        return [].concat(this._trades);
     }
 }
