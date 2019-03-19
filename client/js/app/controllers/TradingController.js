@@ -6,12 +6,16 @@ class TradingController{
         this._inputQuantidade = $('#quantidade');
         this._inputValor = $('#valor');
         this._listaNegociaoes = new TradingList();
+        
+        this._tradingView = new TradingView($('#tradingViews'));
+        this._tradingView.update(this._listaNegociaoes);
     }
 
     adicionar(event){
         event.preventDefault();
 
-        this._listaNegociaoes.adicionar(_criaTrading());
+        this._listaNegociaoes.adiciona(this._criaTrading());
+        this._tradingView.update(this._listaNegociaoes);
         this._limpaForm();
     }
 

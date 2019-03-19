@@ -1,4 +1,4 @@
-class TradingFile{
+class TradingList{
 
     constructor() {
         this._negociacoes = []
@@ -9,6 +9,6 @@ class TradingFile{
     }
 
     get negociacoes(){
-        return [].concat(this.negociacoes);
+        return [].concat(this._negociacoes);
     }
 }
