@@ -1,6 +1,6 @@
 class TradingView extends View{
 
-    _template(model){
+    template(model){
         return `
             <table class="table table-hover table-bordered">
             <thead>
