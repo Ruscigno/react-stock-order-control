@@ -1,9 +1,5 @@
-class TradingView {
+class TradingView extends View{
 
-    constructor(elemento) {
-        this._elemento = elemento;
-    }
-    
     _template(model){
         return `
             <table class="table table-hover table-bordered">
@@ -33,9 +29,5 @@ class TradingView {
             </tfoot>
             </table>
         `;
-    }
-    
-    update(model){
-        this._elemento.innerHTML = this._template(model);
     }
 }
