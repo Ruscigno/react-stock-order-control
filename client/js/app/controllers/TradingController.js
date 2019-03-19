@@ -9,6 +9,10 @@ class TradingController{
         
         this._tradingView = new TradingView($('#tradingViews'));
         this._tradingView.update(this._listaNegociaoes);
+        
+        this._message = new Message();
+        this._messageView = new MessageView($('#messageView'));
+        this._messageView.update(this._message);
     }
 
     adicionar(event){
@@ -16,6 +20,10 @@ class TradingController{
 
         this._listaNegociaoes.adiciona(this._criaTrading());
         this._tradingView.update(this._listaNegociaoes);
+        
+        this._message.texto = 'Trading added successfully';
+        this._messageView.update(this._message);
+        
         this._limpaForm();
     }
 
