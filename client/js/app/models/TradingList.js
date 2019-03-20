@@ -1,14 +1,13 @@
 class TradingList{
 
-    constructor(context, trap) {
-        this.clear();
+    constructor(trap) {
         this._trap = trap;
-        this._context = context;
+        this.clear();
     }
 
     adiciona(_trade){
         this._trades.push(_trade);
-        Reflect.apply(this._trap, this._context, [this]);
+        this._trap(this);
     }
 
     get trades(){
@@ -17,6 +16,6 @@ class TradingList{
 
     clear(){
         this._trades = [];
-        Reflect.apply(this._trap, this._context, [this]);
+        this._trap(this);
     }
 }

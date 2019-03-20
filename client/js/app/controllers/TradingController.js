@@ -5,11 +5,11 @@ class TradingController{
         this._inputData = $('#date');
         this._inputquantity = $('#quantity');
         this._inputValor = $('#price');
-        this._tradingList = new TradingList(function(this, model){
-            this._tradingView.update(model);
-        });
+
         this._tradingView = new TradingView($('#tradingViews'));
         
+        this._tradingList = new TradingList(model => this._tradingView.update(model));
+
         this._message = new Message();
         this._messageView = new MessageView($('#messageView'));
         this._messageView.update(this._message);
