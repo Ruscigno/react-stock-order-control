@@ -1,7 +1,7 @@
 class TradingList{
 
     constructor() {
-        this._trades = []
+        this.clear();
     }
 
     adiciona(_trade){
@@ -10,5 +10,9 @@ class TradingList{
 
     get trades(){
         return [].concat(this._trades);
+    }
+
+    clear(){
+        this._trades = [];
     }
 }

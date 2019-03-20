@@ -27,6 +27,14 @@ class TradingController{
         this._clearForm();
     }
 
+    clear(){
+        this._tradingList.clear();
+        this._tradingView.update(this._tradingList);
+
+        this._message.texto = 'Trading list cleared successfully';
+        this._messageView.update(this._message);
+    }
+
     _addTrade(){
         return new Trading(
             DateHelper.textoParaData(this._inputData.value),
