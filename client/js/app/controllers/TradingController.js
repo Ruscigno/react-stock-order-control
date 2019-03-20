@@ -5,10 +5,10 @@ class TradingController{
         this._inputData = $('#date');
         this._inputquantity = $('#quantity');
         this._inputValor = $('#price');
-        this._tradingList = new TradingList();
-        
+        this._tradingList = new TradingList(function(this, model){
+            this._tradingView.update(model);
+        });
         this._tradingView = new TradingView($('#tradingViews'));
-        this._tradingView.update(this._tradingList);
         
         this._message = new Message();
         this._messageView = new MessageView($('#messageView'));
@@ -19,7 +19,6 @@ class TradingController{
         event.preventDefault();
 
         this._tradingList.adiciona(this._addTrade());
-        this._tradingView.update(this._tradingList);
         
         this._message.texto = 'Trading added successfully';
         this._messageView.update(this._message);
