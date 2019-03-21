@@ -1,13 +1,11 @@
 class TradingList{
 
-    constructor(trap) {
-        this._trap = trap;
+    constructor() {
         this.clear();
     }
 
-    adiciona(_trade){
+    add(_trade){
         this._trades.push(_trade);
-        this._trap(this);
     }
 
     get trades(){
@@ -16,6 +14,5 @@ class TradingList{
 
     clear(){
         this._trades = [];
-        this._trap(this);
     }
 }

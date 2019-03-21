@@ -5,11 +5,22 @@ class TradingController{
         this._inputData = $('#date');
         this._inputquantity = $('#quantity');
         this._inputValor = $('#price');
+
+        let self = this;
+        this._tradingList = new Proxy(new TradingList(), {
+
+            get(target, prop, receiver) {
+                if (['add', 'clear'].includes(prop) && typeof(target[prop] == typeof(Function))) {
+                    return function() {
+                        Reflect.apply(target[prop], target, arguments);
+                        self._tradingView.update(target);
+                    }
+                }
+                return Reflect.get(target, prop, receiver);
+            }
+        });
         
         this._tradingView = new TradingView($('#tradingViews'));
-
-        this._tradingList = new TradingList(model => this._tradingView.update(model));
-    
         this._message = new Message();
         this._messageView = new MessageView($('#messageView'));
         this._messageView.update(this._message);
@@ -18,7 +29,7 @@ class TradingController{
     add(event){
         event.preventDefault();
 
-        this._tradingList.adiciona(this._addTrade());
+        this._tradingList.add(this._addTrade());
         
         this._message.texto = 'Trading added successfully';
         this._messageView.update(this._message);
