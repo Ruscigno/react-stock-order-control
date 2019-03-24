@@ -22,8 +22,21 @@ class TradingController{
     add(event){
         event.preventDefault();
         this._tradingList.add(this._addTrade());
-        this._message.text = 'Trading added successfully';
+        this._message.text = 'Trades added successfully';
         this._clearForm();
+    }
+
+    importTrades(event){
+        let service = new TradeService();
+        service.getWeekTrades((error, trades) => {
+            if (error) {
+                this._message.text = error;
+                return;
+            }
+
+            trades.forEach(trade => this._tradingList.add(trade));
+            this._message.text = 'Trades imported successfully.';
+        });
     }
 
     clear(){

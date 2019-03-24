@@ -32,7 +32,7 @@
     </form>
     
     <div class="text-center">
-        <button class="btn btn-primary text-center" type="button">
+        <button class="btn btn-primary text-center" type="button" onclick="tradingController.importTrades()">
             Import Trading
         </button>
         <button class="btn btn-primary text-center" type="button" onclick="tradingController.clear()">
@@ -53,6 +53,7 @@
     <script src="js/app/views/View.js"></script>
     <script src="js/app/views/TradingView.js"></script>
     <script src="js/app/views/MessageView.js"></script>
+    <script src="js/app/services/TradeService.js"></script>
     <script>
         let tradingController = new TradingController();
     </script>
