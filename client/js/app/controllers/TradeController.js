@@ -28,12 +28,20 @@ class TradeController{
 
     importTrades(event){
         let service = new TradeService();
-        service.getWeekTrades()
+        
+        Promise.all(
+            [
+                service.getWeekTrades(),
+                service.getLastWeekTrades(),
+                service.getBeforeLastWeekTrades()
+            ])
             .then(trades => {
-                trades.forEach(trade => this._tradeList.add(trade));
-                this._message.text = 'Trades imported successfully.';
-            })
-            .catch(error => this._message.text = error);
+                trades.reduce((flatArray, array) => flatArray.concat(array), [])
+                      .forEach(trade => this._tradeList.add(trade));
+                this._message.text = 'Trades imported successfully.';})
+            .catch(error => {
+                this._message.text = error;
+            });
     }
 
     clear(){
