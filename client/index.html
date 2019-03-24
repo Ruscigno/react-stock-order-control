@@ -11,7 +11,7 @@
     
     <h1 class="text-center">Trades</h1>
     <dig id="messageView"></dig>
-    <form class="form" onsubmit="tradingController.add(event)">
+    <form class="form" onsubmit="tradeController.add(event)">
         
         <div class="form-group">
             <label for="date">Date</label>
@@ -32,16 +32,16 @@
     </form>
     
     <div class="text-center">
-        <button class="btn btn-primary text-center" type="button" onclick="tradingController.importTrades()">
+        <button class="btn btn-primary text-center" type="button" onclick="tradeController.importTrades()">
             Import Trades
         </button>
-        <button class="btn btn-primary text-center" type="button" onclick="tradingController.clear()">
+        <button class="btn btn-primary text-center" type="button" onclick="tradeController.clear()">
             Clear
         </button>
     </div> 
     <br>
     <br>
-    <div id="tradingViews"></div>
+    <div id="tradesViews"></div>
 
     <script src="js/app/models/Trade.js"></script>
     <script src="js/app/models/TradeList.js"></script>
@@ -55,7 +55,7 @@
     <script src="js/app/views/MessageView.js"></script>
     <script src="js/app/services/TradeService.js"></script>
     <script>
-        let tradingController = new TradeController();
+        let tradeController = new TradeController();
     </script>
 </body>
 </html>

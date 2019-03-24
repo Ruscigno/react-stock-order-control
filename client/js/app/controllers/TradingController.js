@@ -1,4 +1,4 @@
-class TradeController{
+class TradingController{
 
     constructor(){
         let $ = document.querySelector.bind(document);
@@ -6,9 +6,9 @@ class TradeController{
         this._inputquantity = $('#quantity');
         this._inputValor = $('#price');
 
-        this._tradeList = new Bind(
+        this._tradingList = new Bind(
             new TradeList(),
-            new TradesView($('#tradesViews')),
+            new TradingView($('#tradingViews')),
             'add', 'clear'
         );
         
@@ -21,23 +21,26 @@ class TradeController{
 
     add(event){
         event.preventDefault();
-        this._tradeList.add(this._addTrade());
+        this._tradingList.add(this._addTrade());
         this._message.text = 'Trades added successfully';
         this._clearForm();
     }
 
     importTrades(event){
         let service = new TradeService();
-        service.getWeekTrades()
-            .then(trades => {
-                trades.forEach(trade => this._tradeList.add(trade));
-                this._message.text = 'Trades imported successfully.';
-            })
-            .catch(error => this._message.text = error);
+        service.getWeekTrades((error, trades) => {
+            if (error) {
+                this._message.text = error;
+                return;
+            }
+
+            trades.forEach(trade => this._tradingList.add(trade));
+            this._message.text = 'Trades imported successfully.';
+        });
     }
 
     clear(){
-        this._tradeList.clear();
+        this._tradingList.clear();
         this._message.text = 'Trade list cleared successfully';
     }
 
