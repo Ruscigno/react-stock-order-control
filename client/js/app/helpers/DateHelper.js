@@ -7,10 +7,10 @@ class DateHelper{
         return `${data.getDate()}/${data.getMonth()+1}/${data.getFullYear()}`;
     }
 
-    static textoParaData(texto){
-        if (!/\d{4}-\d{2}-\d{2}/.test(texto)){
+    static textoParaData(text){
+        if (!/\d{4}-\d{2}-\d{2}/.test(text)){
             throw new Error('Should be in formart: yyyy-mm-dd');
         }
-        return new Date(texto.split('-'));
+        return new Date(text.split('-'));
     }
 }
