@@ -6,19 +6,16 @@ class TradingController{
         this._inputquantity = $('#quantity');
         this._inputValor = $('#price');
 
-        this._tradingView = new TradingView($('#tradingViews'));
         this._tradingList = new Bind(
             new TradingList(),
-            this._tradingView,
-            ['add', 'clear']
+            new TradingView($('#tradingViews')),
+            'add', 'clear'
         );
-        
-        this._messageView = new MessageView($('#messageView'));
         
         this._message = new Bind(
             new Message(),
-            this._messageView,
-            ['text']
+            new MessageView($('#messageView')),
+            'text'
         );
     }
 
