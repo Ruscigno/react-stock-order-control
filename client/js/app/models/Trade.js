@@ -1,4 +1,4 @@
-class Trading {
+class Trade {
 
     constructor(data, quantity, price) {
         this._data = new Date(data.getTime());

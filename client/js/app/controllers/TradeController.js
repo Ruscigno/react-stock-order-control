@@ -1,4 +1,4 @@
-class TradingController{
+class TradeController{
 
     constructor(){
         let $ = document.querySelector.bind(document);
@@ -7,8 +7,8 @@ class TradingController{
         this._inputValor = $('#price');
 
         this._tradingList = new Bind(
-            new TradingList(),
-            new TradingView($('#tradingViews')),
+            new TradeList(),
+            new TradesView($('#tradingViews')),
             'add', 'clear'
         );
         
@@ -41,11 +41,11 @@ class TradingController{
 
     clear(){
         this._tradingList.clear();
-        this._message.text = 'Trading list cleared successfully';
+        this._message.text = 'Trade list cleared successfully';
     }
 
     _addTrade(){
-        return new Trading(
+        return new Trade(
             DateHelper.textoParaData(this._inputData.value),
             this._inputquantity.value,
             this._inputValor.value);

@@ -14,7 +14,7 @@ class TradeService{
             if(request.readyState == 4) {
                 if (request.status == 200){
                     cb(null, JSON.parse(request.responseText)
-                        .map(newTrade => new Trading(new Date(newTrade.data), newTrade.quantidade, newTrade.valor)));
+                        .map(newTrade => new Trade(new Date(newTrade.data), newTrade.quantidade, newTrade.valor)));
                 }else{
                     console.log(request.responseText);
                     cb('Error while getting Trades List from server.');

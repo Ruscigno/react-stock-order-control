@@ -1,4 +1,4 @@
-class TradingView extends View{
+class TradesView extends View{
 
     template(model){
         return `

@@ -1,4 +1,4 @@
-class TradingList{
+class TradeList{
 
     constructor() {
         this.clear();

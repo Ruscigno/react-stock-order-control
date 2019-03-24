@@ -33,7 +33,7 @@
     
     <div class="text-center">
         <button class="btn btn-primary text-center" type="button" onclick="tradingController.importTrades()">
-            Import Trading
+            Import Trades
         </button>
         <button class="btn btn-primary text-center" type="button" onclick="tradingController.clear()">
             Clear
@@ -43,19 +43,19 @@
     <br>
     <div id="tradingViews"></div>
 
-    <script src="js/app/models/Trading.js"></script>
-    <script src="js/app/models/TradingList.js"></script>
+    <script src="js/app/models/Trade.js"></script>
+    <script src="js/app/models/TradeList.js"></script>
     <script src="js/app/models/Message.js"></script>
     <script src="js/app/helpers/Bind.js"></script>
     <script src="js/app/services/ProxyFactory.js"></script>
-    <script src="js/app/controllers/TradingController.js"></script>
+    <script src="js/app/controllers/TradeController.js"></script>
     <script src="js/app/helpers/DateHelper.js"></script>
     <script src="js/app/views/View.js"></script>
-    <script src="js/app/views/TradingView.js"></script>
+    <script src="js/app/views/TradesView.js"></script>
     <script src="js/app/views/MessageView.js"></script>
     <script src="js/app/services/TradeService.js"></script>
     <script>
-        let tradingController = new TradingController();
+        let tradingController = new TradeController();
     </script>
 </body>
 </html>
