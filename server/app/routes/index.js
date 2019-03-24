@@ -4,15 +4,15 @@ var api = require('../api');
 
 module.exports  = function(app) {
     
-    app.route('/negociacoes/semana')
-        .get(api.listaSemana);
+    app.route('/trades/week')
+        .get(api.weekList);
         
-    app.route('/negociacoes/anterior')
-        .get(api.listaAnterior);
+    app.route('/trades/last')
+        .get(api.lastList);
         
-    app.route('/negociacoes/retrasada')
-        .get(api.listaRetrasada);  
+    app.route('/trades/before-last')
+        .get(api.beforeLastList);  
         
-    app.route('/negociacoes')
-        .post(api.cadastraNegociacao);          
+    app.route('/trades')
+        .post(api.addTrade);          
 };

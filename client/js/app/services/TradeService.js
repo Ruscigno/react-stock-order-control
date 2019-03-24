@@ -7,7 +7,7 @@ class TradeService{
     getWeekTrades(cb){
         return new Promise((resolve, reject) => {
             this._http
-                .get('negociacoes/semana')
+                .get('trades/week')
                 .then(trades => {
                     resolve(trades.map(newTrade => new Trade(new Date(newTrade.data), newTrade.quantidade, newTrade.valor)))})
                 .catch(error => {
@@ -21,7 +21,7 @@ class TradeService{
     getLastWeekTrades(cb){
         return new Promise((resolve, reject) => {
             this._http
-                .get('negociacoes/anterior')
+                .get('trades/last')
                 .then(trades => {
                     resolve(trades.map(newTrade => new Trade(new Date(newTrade.data), newTrade.quantidade, newTrade.valor)))})
                 .catch(error => {
@@ -34,7 +34,7 @@ class TradeService{
     getBeforeLastWeekTrades(cb){
         return new Promise((resolve, reject) => {
             this._http
-                .get('negociacoes/retrasada')
+                .get('trades/before-last')
                 .then(trades => {
                     resolve(trades.map(newTrade => new Trade(new Date(newTrade.data), newTrade.quantidade, newTrade.valor)))})
                 .catch(error => {
