@@ -28,15 +28,12 @@ class TradeController{
 
     importTrades(event){
         let service = new TradeService();
-        service.getWeekTrades((error, trades) => {
-            if (error) {
-                this._message.text = error;
-                return;
-            }
-
-            trades.forEach(trade => this._tradingList.add(trade));
-            this._message.text = 'Trades imported successfully.';
-        });
+        service.getWeekTrades()
+            .then(trades => {
+                trades.forEach(trade => this._tradingList.add(trade));
+                this._message.text = 'Trades imported successfully.';
+            })
+            .catch(error => this._message.text = error);
     }
 
     clear(){
