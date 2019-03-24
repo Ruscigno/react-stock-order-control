@@ -5,11 +5,12 @@ class TradeController{
         this._inputData = $('#date');
         this._inputquantity = $('#quantity');
         this._inputValor = $('#price');
+        this._order = '';
 
         this._tradeList = new Bind(
             new TradeList(),
             new TradesView($('#tradesViews')),
-            'add', 'clear'
+            'add', 'clear', 'orderBy'
         );
         
         this._message = new Bind(
@@ -61,5 +62,15 @@ class TradeController{
         this._inputValor.value = 0.0;
 
         this._inputData.focus();
+    }
+
+    orderBy(column){
+        if (this._order == column){
+            this._tradeList.orderBy((a, b) => b[column] - a[column]);
+            this._order = 'i';
+        }else{
+            this._tradeList.orderBy((a, b) => a[column] - b[column]);
+            this._order = column;
+        }
     }
 }

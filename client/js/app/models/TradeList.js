@@ -15,4 +15,8 @@ class TradeList{
     clear(){
         this._trades = [];
     }
+
+    orderBy(criteria) {
+        this._trades.sort(criteria);
+    }
 }

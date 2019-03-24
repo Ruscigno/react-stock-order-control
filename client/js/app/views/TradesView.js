@@ -5,10 +5,10 @@ class TradesView extends View{
             <table class="table table-hover table-bordered">
             <thead>
                 <tr>
-                    <th>DATE</th>
-                    <th>QUANTITY</th>
-                    <th>PRICE</th>
-                    <th>VOLUME</th>
+                    <th onclick="tradeController.orderBy('data')">DATE</th>
+                    <th onclick="tradeController.orderBy('quantity')">QUANTITY</th>
+                    <th onclick="tradeController.orderBy('price')">PRICE</th>
+                    <th onclick="tradeController.orderBy('volume')">VOLUME</th>
                 </tr>
             </thead>
 
