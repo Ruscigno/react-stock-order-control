@@ -9,7 +9,7 @@ class TradeService{
             this._http
                 .get('trades/week')
                 .then(trades => {
-                    resolve(trades.map(newTrade => new Trade(new Date(newTrade.data), newTrade.quantidade, newTrade.valor)))})
+                    resolve(trades.map(newTrade => new Trade(new Date(newTrade.date), newTrade.quantity, newTrade.price)))})
                 .catch(error => {
                     console.log(error);
                     reject("Error while getting Week's Trades List from server.");
@@ -23,7 +23,7 @@ class TradeService{
             this._http
                 .get('trades/last')
                 .then(trades => {
-                    resolve(trades.map(newTrade => new Trade(new Date(newTrade.data), newTrade.quantidade, newTrade.valor)))})
+                    resolve(trades.map(newTrade => new Trade(new Date(newTrade.date), newTrade.quantity, newTrade.price)))})
                 .catch(error => {
                     console.log(error);
                     reject("Error while getting last Week's Trades List from server.");
@@ -36,7 +36,7 @@ class TradeService{
             this._http
                 .get('trades/before-last')
                 .then(trades => {
-                    resolve(trades.map(newTrade => new Trade(new Date(newTrade.data), newTrade.quantidade, newTrade.valor)))})
+                    resolve(trades.map(newTrade => new Trade(new Date(newTrade.date), newTrade.quantity, newTrade.price)))})
                 .catch(error => {
                     console.log(error);
                     reject("Error while getting before last Week's Trades List from server.");
