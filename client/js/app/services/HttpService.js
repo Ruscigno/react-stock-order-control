@@ -20,7 +20,25 @@ class HttpService {
                     }
                 }
             };
-            request.send(); 
+            request.send();
+        });
+    }
+
+    post(url, data) {
+        return new Promise((resolve, reject) => {
+            let request = new XMLHttpRequest();
+            request.open('POST', url, true);
+            request.setRequestHeader("Content-Type", "application/json");
+            if(request.readyState == 4) {
+                if (request.status == 200){
+                    console.log('adasd');
+                    console.log(JSON.parse(request.responseText));
+                    resolve(JSON.parse(request.responseText));
+                }else{
+                    reject(request.responseText);
+                }
+            }
+            request.send(JSON.stringify(data));
         });
     }
 }
