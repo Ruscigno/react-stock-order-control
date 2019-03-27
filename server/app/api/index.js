@@ -30,7 +30,8 @@ api.weekList = function(req, res) {
 
 api.lastList = function(req, res) {
    var lastTrades = trades.filter(function(trade) {
-        return trade.date < currentDate && trade.date > beforeDate;
+        console.log(trade.date, currentDate, beforeDate)
+        return !(trade.date > lastDate) && !(trade.date < lastDate);
     });
 	setTimeout(function() {
 		res.json(lastTrades);	
