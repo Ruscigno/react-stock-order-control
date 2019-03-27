@@ -15,7 +15,7 @@ class TradesView extends View{
             <tbody>
                 ${model.trades.map(n => 
                     `<tr>
-                        <td>${DateHelper.dataParaTexto(n.data)}</td>
+                        <td>${DateHelper.dateToText(n.data)}</td>
                         <td>${n.quantity}</td>
                         <td>${n.price}</td>
                         <td>${n.volume}</td>

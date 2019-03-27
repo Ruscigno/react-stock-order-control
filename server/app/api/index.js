@@ -7,7 +7,6 @@ lastDate.setDate(currentDate.getDate() - 7);
 var beforeDate = new Date();
 beforeDate.setDate(currentDate.getDate() - 14);
 
-console.log('trades...');
 var trades = [
       { date : currentDate, quantity : 1, price : 150},
       { date : currentDate, quantity : 2, price : 250},
@@ -30,7 +29,6 @@ api.weekList = function(req, res) {
 
 api.lastList = function(req, res) {
    var lastTrades = trades.filter(function(trade) {
-        console.log(trade.date, currentDate, beforeDate)
         return !(trade.date > lastDate) && !(trade.date < lastDate);
     });
 	setTimeout(function() {
@@ -50,11 +48,9 @@ api.beforeLastList = function(req, res) {
 
 api.addTrade = function(req, res) {
     console.log(req.body);
-    console.log(typeof(req.body.date));
     req.body.date = new Date(req.body.date.replace(/-/g,'/'));
     trades.push(req.body);
     res.status(200).json("Trade received");
-    console.log(trades);
 };
 
 

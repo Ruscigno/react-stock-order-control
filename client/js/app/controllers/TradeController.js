@@ -22,8 +22,12 @@ class TradeController{
 
     add(event){
         event.preventDefault();
-        this._tradeList.add(this._addTrade());
-        this._message.text = 'Trades added successfully';
+        try{
+            this._tradeList.add(this._addTrade());
+            this._message.text = 'Trade added successfully';
+        }catch(error){
+            this._message.text = error;
+        }
         this._clearForm();
     }
 
@@ -52,7 +56,7 @@ class TradeController{
 
     _addTrade(){
         return new Trade(
-            DateHelper.textoParaData(this._inputData.value),
+            DateHelper.textToDate(this._inputData.value),
             this._inputquantity.value,
             this._inputValor.value);
     }
