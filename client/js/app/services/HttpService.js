@@ -24,7 +24,7 @@ class HttpService {
         });
     }
 
-    post(url, data) {
+    post(url, date) {
         return new Promise((resolve, reject) => {
             let request = new XMLHttpRequest();
             request.open('POST', url, true);
@@ -38,7 +38,7 @@ class HttpService {
                     reject(request.responseText);
                 }
             }
-            request.send(JSON.stringify(data));
+            request.send(JSON.stringify(date));
         });
     }
 }

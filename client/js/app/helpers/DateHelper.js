@@ -3,8 +3,8 @@ class DateHelper{
     constructor() {
         throw new Error("This class shouldn't be instanced");
     }
-    static dateToText(data){
-        return `${data.getDate()}/${data.getMonth()+1}/${data.getFullYear()}`;
+    static dateToText(date){
+        return `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
     }
 
     static textToDate(text){

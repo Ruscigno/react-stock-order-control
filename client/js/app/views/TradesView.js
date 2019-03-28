@@ -5,7 +5,7 @@ class TradesView extends View{
             <table class="table table-hover table-bordered">
             <thead>
                 <tr>
-                    <th onclick="tradeController.orderBy('data')">DATE</th>
+                    <th onclick="tradeController.orderBy('date')">DATE</th>
                     <th onclick="tradeController.orderBy('quantity')">QUANTITY</th>
                     <th onclick="tradeController.orderBy('price')">PRICE</th>
                     <th onclick="tradeController.orderBy('volume')">VOLUME</th>
@@ -15,7 +15,7 @@ class TradesView extends View{
             <tbody>
                 ${model.trades.map(n => 
                     `<tr>
-                        <td>${DateHelper.dateToText(n.data)}</td>
+                        <td>${DateHelper.dateToText(n.date)}</td>
                         <td>${n.quantity}</td>
                         <td>${n.price}</td>
                         <td>${n.volume}</td>
