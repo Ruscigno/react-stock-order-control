@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Small Indexed DB Example</title>
+</head>
+<body>
+  <script src="js/app/models/Trade.js"></script>
+  <script>
+    var con;
+    var openRequest = window.indexedDB.open('aluraframe', 5);
+
+    openRequest.onupgradeneeded = e => {
+      console.log('Create or change an existing DB');
+      let myCon = e.target.result;
+
+      if(myCon.objectStoreNames.contains('trades')){
+        console.log('log')
+        myCon.deleteObjectStore('trades');
+      }
+      myCon.createObjectStore('trades', {autoIncrement: true});
+    }
+
+    openRequest.onsuccess = e => {
+      console.log('Connected.')
+      con = e.target.result;
+    }
+
+    openRequest.onerror = e => {
+      console.log(e.target.error)
+    }
+
+    function add(){
+      let trans = con.transaction(['trades'], 'readwrite');
+      let store = trans.objectStore('trades');
+
+      let trade = new Trade(new Date(), 1, 200);
+      let request = store.add(trade);
+
+      request.onsuccess = e => {
+        console.log('Trade added successfully');
+      };
+
+      request.onerror = e => {
+        console.log('Could not add the new Trade');
+      };
+    }
+
+    function listAll(){
+      let trans = con.transaction(['trades'], 'readwrite');
+      let store = trans.objectStore('trades');
+      let cursor = store.openCursor();
+      let trades = [];
+
+      cursor.onsuccess = e => {
+        let curr = e.target.result;
+        if (curr){
+          let data = curr.value;
+          trades.push(new Trade(data._date, data._quantity, data._price));
+          curr.continue();
+        }else{
+          console.log(trades);
+        }
+      };
+
+      cursor.onerror = e => {
+        console.log(e.target.error.name);
+      };
+    }
+  </script>
+</body>
+</html>
