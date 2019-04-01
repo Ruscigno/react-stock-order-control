@@ -21,14 +21,23 @@ class TradeController{
     }
 
     add(event){
+
         event.preventDefault();
-        try{
-            this._tradeList.add(this._addTrade());
-            this._message.text = 'Trade added successfully';
-        }catch(error){
-            this._message.text = error;
-        }
-        this._clearForm();
+
+        ConnectionFactory
+            .getConnection()
+            .then(connection => {
+                let trade = this._addTrade();
+            
+            new TradeDao(connection)
+                .add(trade)
+                .then(() => {
+                    this._tradeList.add(trade)
+                    this._message.text = 'Trade added successfully';
+                    this._clearForm();
+                })
+        })
+        .catch(e => this._message.text = e);
     }
 
     importTrades(event){
@@ -57,8 +66,8 @@ class TradeController{
     _addTrade(){
         return new Trade(
             DateHelper.textToDate(this._inputData.value),
-            this._inputquantity.value,
-            this._inputValor.value);
+            parseInt(this._inputquantity.value),
+            parseInt(this._inputValor.value));
     }
     _clearForm(){
         this._inputData.value = "";
