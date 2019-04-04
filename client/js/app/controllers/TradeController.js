@@ -21,15 +21,11 @@ class TradeController{
 
         ConnectionFactory
             .getConnection()
-            .then(con => {
-                new TradeDao(con)
-                .listAll()
-                .then(trades => {
-                    trades.forEach(trade => {
-                        this._tradeList.add(trade);
-                    });
-                });
-            })
+            .then(con => new TradeDao(con))
+            .then(dao => dao.listAll())
+            .then(trades => 
+                trades.forEach(trade => 
+                    this._tradeList.add(trade)));
     }
 
     add(event){
