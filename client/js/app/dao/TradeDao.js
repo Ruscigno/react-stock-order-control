@@ -24,4 +24,32 @@ class TradeDao {
       };
     });
   }
+
+  listAll() {
+    return new Promise((resolve, reject) => {
+      let cursor = this._connection
+        .transaction([this._store], 'readwrite')
+        .objectStore(this._store)
+        .openCursor();
+
+      let trades = [];
+
+      cursor.onsuccess = e => {
+        let current = e.target.result;
+
+        if (current) {
+          let data = current.value;
+          trades.push(new Trade(data._date, data._quantity, data._price));
+          current.continue();
+        } else {
+          resolve(trades);
+        }
+      }
+
+      cursor.onerror = e => {
+        console.log(e.target.error.name);
+        reject('Could not list the trades')
+      }
+    });
+  }
 }
