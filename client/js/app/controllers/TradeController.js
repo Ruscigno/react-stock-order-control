@@ -25,7 +25,8 @@ class TradeController{
             .then(dao => dao.listAll())
             .then(trades => 
                 trades.forEach(trade => 
-                    this._tradeList.add(trade)));
+                    this._tradeList.add(trade)))
+            .catch(e => this._message.text = e);
     }
 
     add(event){
@@ -37,13 +38,13 @@ class TradeController{
             .then(connection => {
                 let trade = this._addTrade();
             
-            new TradeDao(connection)
-                .add(trade)
-                .then(() => {
-                    this._tradeList.add(trade)
-                    this._message.text = 'Trade added successfully';
-                    this._clearForm();
-                })
+                new TradeDao(connection)
+                    .add(trade)
+                    .then(() => {
+                        this._tradeList.add(trade)
+                        this._message.text = 'Trade added successfully';
+                        this._clearForm();
+                    });
         })
         .catch(e => this._message.text = e);
     }
@@ -67,8 +68,14 @@ class TradeController{
     }
 
     clear(){
-        this._tradeList.clear();
-        this._message.text = 'Trade list cleared successfully';
+        ConnectionFactory
+            .getConnection()
+            .then(con => new TradeDao(con))
+            .then(dao => dao.deleteAll())
+            .then(message => {
+                this._message.text = message;
+                this._tradeList.clear();
+            });
     }
 
     _addTrade(){

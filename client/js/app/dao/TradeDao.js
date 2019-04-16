@@ -48,8 +48,24 @@ class TradeDao {
 
       cursor.onerror = e => {
         console.log(e.target.error.name);
-        reject('Could not list the trades')
+        reject('Could not list the trades');
       }
+    });
+  }
+
+  deleteAll(){
+    return new Promise((resolve, reject) => {
+      let request = this._connection
+        .transaction([this._store], 'readwrite')
+        .objectStore(this._store)
+        .clear();
+
+      request.onsuccess = e => resolve('All trades removed successfully');
+
+      request.onerror = e => {
+        console.log(e.target.error);
+        resolve("Could not remove the trade's list");
+      };
     });
   }
 }
