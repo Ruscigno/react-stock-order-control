@@ -19,14 +19,13 @@ class TradeController{
             'text' 
         );
 
+        this._service = new TradeService();
         this._init();
     }
     
     _init(){
-        ConnectionFactory
-            .getConnection()
-            .then(con => new TradeDao(con))
-            .then(dao => dao.listAll())
+        this._service
+            .listAll()
             .then(trades => 
                 trades.forEach(trade => 
                     this._tradeList.add(trade)))
@@ -42,7 +41,7 @@ class TradeController{
 
         let trade = this._addTrade();
 
-        new TradeService()
+        this._service
             .add(trade)
             .then(message => {
                 this._tradeList.add(trade);
@@ -53,8 +52,7 @@ class TradeController{
     }
 
     importTrades(event){
-        let service = new TradeService();
-        service
+        this._service
             .getTrades()
             .then(trades => trades.filter(trade => 
                 !this._tradeList.trades.some(realTrade =>
@@ -69,14 +67,13 @@ class TradeController{
     }
 
     clear(){
-        ConnectionFactory
-            .getConnection()
-            .then(con => new TradeDao(con))
-            .then(dao => dao.deleteAll())
+        this._service
+            .clear()
             .then(message => {
                 this._message.text = message;
                 this._tradeList.clear();
-            });
+            })
+            .catch(e => this._message.text = e);
     }
 
     _addTrade(){

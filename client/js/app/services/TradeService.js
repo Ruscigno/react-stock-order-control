@@ -70,8 +70,32 @@ class TradeService{
             .then(connection => new TradeDao(connection))
             .then(dao => dao.add(trade))
             .then(() => 'Trade added successfully')
-            .catch(() => {
+            .catch(e => {
+                console.log(e);
                 throw new Error('Could not add the new Trade')
         });
     }
+
+    listAll(){
+        return ConnectionFactory
+            .getConnection()
+            .then(connection => new TradeDao(connection))
+            .then(dao => dao.listAll())
+            .catch(e => {
+                console.log(e);
+                throw new Error('Could not get Trades list');
+        });
+    }
+
+    clear(){
+        return ConnectionFactory
+            .getConnection()
+            .then(connection => new TradeDao(connection))
+            .then(dao => dao.deleteAll())
+            .then(() => 'Trades cleared successfuly')
+            .catch(e => {
+                console.log(e);
+                throw new Error('Could not clear all trades')
+            });
+    }    
 }
