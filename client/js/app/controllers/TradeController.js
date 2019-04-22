@@ -19,6 +19,9 @@ class TradeController{
             'text' 
         );
 
+    }
+    
+    _init(){
         ConnectionFactory
             .getConnection()
             .then(con => new TradeDao(con))
@@ -27,12 +30,14 @@ class TradeController{
                 trades.forEach(trade => 
                     this._tradeList.add(trade)))
             .catch(e => this._message.text = e);
+    
+        setInterval(() => {
+            this.importTrades();
+        }, 3000);
     }
 
     add(event){
-
         event.preventDefault();
-
         ConnectionFactory
             .getConnection()
             .then(connection => {
