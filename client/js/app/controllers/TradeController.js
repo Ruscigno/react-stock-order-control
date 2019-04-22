@@ -16,7 +16,7 @@ class TradeController{
         this._message = new Bind(
             new Message(),
             new MessageView($('#messageView')),
-            'text'
+            'text' 
         );
 
         ConnectionFactory
@@ -51,20 +51,13 @@ class TradeController{
 
     importTrades(event){
         let service = new TradeService();
-        
-        Promise.all(
-            [
-                service.getWeekTrades(),
-                service.getLastWeekTrades(),
-                service.getBeforeLastWeekTrades()
-            ])
-            .then(trades => {
-                trades.reduce((flatArray, array) => flatArray.concat(array), [])
-                      .forEach(trade => this._tradeList.add(trade));
-                this._message.text = 'Trades imported successfully.';})
-            .catch(error => {
-                this._message.text = error;
-            });
+        service
+            .getTrades()
+            .then(trades => trades.forEach(trade => {
+                this._tradeList.add(trade);
+                this._message.text = 'Trades imported successfully.';
+            }))
+            .catch(error => this._message.text = error);
     }
 
     clear(){

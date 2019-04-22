@@ -43,4 +43,24 @@ class TradeService{
                 });
         });
     }
+
+    getTrades() {
+
+        return new Promise((resolve, reject) => {
+
+            Promise.all([
+                this.getWeekTrades(),
+                this.getLastWeekTrades(),
+                this.getBeforeLastWeekTrades()
+            ]).then(cycleTrades => {
+
+                let trades = cycleTrades
+                    .reduce((datas, item) => datas.concat(item), [])
+                    .map(data => new Trade(new Date(data.date), data.quantity, data.price));
+
+                resolve(trades);
+
+            }).catch(erro => reject(erro));
+        });
+    }
 }
