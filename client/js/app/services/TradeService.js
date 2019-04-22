@@ -63,4 +63,15 @@ class TradeService{
             }).catch(erro => reject(erro));
         });
     }
+
+    add(trade){
+        return ConnectionFactory
+            .getConnection()
+            .then(connection => new TradeDao(connection))
+            .then(dao => dao.add(trade))
+            .then(() => 'Trade added successfully')
+            .catch(() => {
+                throw new Error('Could not add the new Trade')
+        });
+    }
 }

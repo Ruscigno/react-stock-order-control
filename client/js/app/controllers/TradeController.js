@@ -19,6 +19,7 @@ class TradeController{
             'text' 
         );
 
+        this._init();
     }
     
     _init(){
@@ -38,20 +39,17 @@ class TradeController{
 
     add(event){
         event.preventDefault();
-        ConnectionFactory
-            .getConnection()
-            .then(connection => {
-                let trade = this._addTrade();
-            
-                new TradeDao(connection)
-                    .add(trade)
-                    .then(() => {
-                        this._tradeList.add(trade)
-                        this._message.text = 'Trade added successfully';
-                        this._clearForm();
-                    });
-        })
-        .catch(e => this._message.text = e);
+
+        let trade = this._addTrade();
+
+        new TradeService()
+            .add(trade)
+            .then(message => {
+                this._tradeList.add(trade);
+                this._message.text = message
+                this._clearForm();
+            })
+            .catch(e => this._message.text = e);
     }
 
     importTrades(event){
