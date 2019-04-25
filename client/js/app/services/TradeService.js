@@ -98,4 +98,17 @@ class TradeService{
                 throw new Error('Could not clear all trades')
             });
     }    
+
+    import(currentList) {
+        return this.getTrades()
+            .then(trades => trades.filter(trade => 
+                !currentList.some(realTrade =>
+                    JSON.stringify(trade) == JSON.stringify(realTrade))
+                )
+            )
+            .catch(e => {
+                console.log(e);
+                throw new Error('Could not find trades to import');
+            })
+    }
 }

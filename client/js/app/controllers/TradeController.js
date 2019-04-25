@@ -52,13 +52,7 @@ class TradeController{
     }
 
     importTrades(event){
-        this._service
-            .getTrades()
-            .then(trades => trades.filter(trade => 
-                !this._tradeList.trades.some(realTrade =>
-                    JSON.stringify(trade) == JSON.stringify(realTrade))
-                )
-            )
+        this._service.import(this._tradeList.trades)
             .then(trades => trades.forEach(trade => {
                 this._tradeList.add(trade);
                 this._message.text = 'Trades imported successfully.';
