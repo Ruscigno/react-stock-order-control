@@ -103,7 +103,7 @@ class TradeService{
         return this.getTrades()
             .then(trades => trades.filter(trade => 
                 !currentList.some(realTrade =>
-                    JSON.stringify(trade) == JSON.stringify(realTrade))
+                    trade.isEquals(realTrade))
                 )
             )
             .catch(e => {

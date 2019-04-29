@@ -22,4 +22,8 @@ class Trade {
     get price(){
         return this._price;
     }
+
+    isEquals(anotherTrade) {        
+        return JSON.stringify(this) == JSON.stringify(anotherTrade)
+    }
 }
